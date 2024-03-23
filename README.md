@@ -53,5 +53,21 @@ make
 ```
 
 ### Produce 3d image
-First you need two stereo images i.e. left and right image. Create and copy these images in that directory i.e.
-`test/irfan`
+First you need two stereo images i.e. left and right image. Check `Irfan` directory in test directory in `er9b`.
+copy `er9b` and `main.o` in `Irfan` directory and run following command.
+```shell
+./er9b er9b_input.txt
+```
+It will produce files, you need to copy two values of disparity from `disp_range.txt`. 
+
+Go to `dmag5/main/test/Irfan` directory and open `dmag5_input.txt` and replace the values on 3 and 4 line. 
+Copy `dmag5` and `main.o` in `Irfan` directory and following command 
+```shell
+./dmag5 dmag5_input.txt
+```
+It will produce the two images for left and right stereo cameras.
+
+Now copy output_0.png from `er9b/main/test/Irfan` directory and copy `disp1.png` from `dmag5/main/test/Irfan` on Desktop.
+Open https://depthplayer.ugocapeto.com/ in Browser, and select `output_0.png` and in `disp1.png` respectively and hit create model.
+It will generate 3d image for you.
+
