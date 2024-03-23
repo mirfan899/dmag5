@@ -1,25 +1,57 @@
-# dmag5
-
+# 3d image generation
 Written and tested on Ubuntu 22.04.
 
-Creates a depth map (disparity map) from a stereo pair using local matching (guided filter).
 
-This repo is an implementation of:
+### Steps
+Install dependencies
+```shell
+sudo apt install libjpeg-dev libpng-dev libtiff-dev
+```
+Download following in same directory for example `3d`
+```shell
+cd 3d
+git clone https://github.com/mirfan899/er9b.git
+git clone https://github.com/mirfan899/common.git
+git clone https://github.com/mirfan899/dmag5.git
+```
 
-[Fast Cost-Volume Filtering for Visual Correspondence and Beyond by Christoph Rhemann, Asmaa Hosni, Michael Bleyer, Carsten Rother, and Margrit Gelautz](http://research.microsoft.com/pubs/147301/rhemannetal.pdf)
+### Install Common packages.
+Install Common packages. Go to common directory and run in each subdirectory
+```shell
+#go to io directory in terminal and run
+make -f Makefile_g
+#go to jpeg directory in terminal and run
+make -f Makefile_g
+#go to math directory in terminal and run
+make -f Makefile_g
+#go to png directory in terminal and run 
+make -f Makefile_g
+#go to tiff directory in terminal and run 
+make -f Makefile_g
+#go to util directory in terminal and run 
+make -f Makefile_g 
+```
 
+### Install er9b
+To create the executable, compile the code in directory "er9b" using "make -f Makefile_g/Makefile_O" and then go into the "main" directory and create the exec using "make".
+
+```shell
+#go to er9b directory in terminal and run
+make -f Makefile_g
+cd main
+make
+```
+
+### Install dmag5
 To create the executable, compile the code in directory "dmag5" using "make -f Makefile_g/Makefile_O" and then go into the "main" directory and create the exec using "make".
 
-Test cases are given in the "test" directory.
+```shell
+#go to dmag5 directory in terminal and run
+make -f Makefile_g
+cd main
+make
+```
 
-Info about dmag5 (theory behind it and how to use it) can be found here:
-
-[Depth Map Automatic Generator 5 (DMAG5)](https://3dstereophoto.blogspot.com/2014/05/depth-map-automatic-generator-5-dmag5.html)
-
-[Fast Cost Volume Filtering for Stereo Matching](https://3dstereophoto.blogspot.com/2014/05/fast-cost-volume-filtering-for-stereo.html)
-
-[Guided Image Filtering](https://3dstereophoto.blogspot.com/2014/05/guided-image-filtering.html)
-
-Dependencies (check the Makefiles):
-
-"common" repo
+### Produce 3d image
+First you need two stereo images i.e. left and right image. Create and copy these images in that directory i.e.
+`test/irfan`
