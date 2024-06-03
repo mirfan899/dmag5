@@ -20,9 +20,10 @@ ms = []
 left = sorted(left)
 right = sorted(right)
 
-for l, r in zip(left, right):
-    li = ski.io.imread(l)
-    ri = ski.io.imread(r)
+
+def mse_score(left, right):
+    li = ski.io.imread(left)
+    ri = ski.io.imread(right)
     # Handle color images (if applicable)
     if len(li.shape) == 3 and len(ri.shape) == 3:  # Check for 3 channels (RGB)
         li = rgb2gray(li)
@@ -36,14 +37,20 @@ for l, r in zip(left, right):
     # psnr = peak_signal_noise_ratio(left_image, right_image, data_range=(min(right_image),max(right_image)))
     mse = mean_squared_error(left_image, right_image)
 
+    return mse
+
+
+for l, r in zip(left, right):
+    mse = mse_score(l, r)
+
     print(f"Original Image Path: {l}")
     print(f"\nNoisy Image Path: {r}")
     # print(f"\nPeak Signal-to-Noise Ratio (PSNR): {psnr:.2f} dB")
     print(f"\nMSE: {mse:.2f}")
     # ps.append(psnr)
     ms.append(mse)
-    limages.append(left_image)
-    rimages.append(right_image)
+    limages.append(l)
+    rimages.append(r)
 
 # df = pd.DataFrame({"Left": limages, "Right":rimages, "PSNR": ps})
 df = pd.DataFrame({"Left": left, "Right":right, "MSE": ms})
