@@ -4,7 +4,6 @@ import os
 import numpy as np
 import pandas as pd
 
-from helpers import mse_score
 
 os.chdir("main/part2")
 images = glob.glob("*.png")
@@ -76,10 +75,10 @@ for l, r in zip(li, ri):
         disp_matrix = list(map(str, disp_matrix))
         disp_matrix = ",".join(disp_matrix)
 
-        data.append(mse_score(lines[4], lines[5]))
-        params = [f"P{i}" for i in range(1,18)]
-        columns = ["disparity", "disparity_matrix"]
+        params = [f"P{i}" for i in range(1,19)]
+        columns = ["disparity_map"]
         columns.extend(params)
+        data.insert(0, disp_matrix)
         cdf = pd.DataFrame(data=[data], columns=columns)
         df = pd.concat([df, cdf], axis=0, ignore_index=True)
 
